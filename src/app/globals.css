@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+/* Site-specific overrides - editorial direction palette */
+:root {
+	--ag-bg: #0a0a0a;
+	--ag-fg: #ededed;
+	--ag-red: #c92020;
+	--site-rule: #1c1c1c;
+	--site-muted: #999999;
+}
+
+@theme inline {
+	--color-bg: var(--ag-bg);
+	--color-surface: var(--ag-surface);
+	--color-surface-raised: var(--ag-surface-raised);
+	--color-border: var(--ag-border);
+	--color-border-strong: var(--ag-border-strong);
+	--color-fg: var(--ag-fg);
+	--color-fg-dim: var(--ag-fg-dim);
+	--color-fg-muted: var(--ag-fg-muted);
+	--color-fg-bright: var(--ag-fg-bright);
+	--color-accent: var(--ag-red);
+	--color-accent-hover: var(--ag-red-hover);
+	--color-rule: var(--site-rule);
+	--color-muted: var(--site-muted);
+	--font-sans: var(--font-dm-sans);
+	--font-mono: var(--font-dm-mono);
+}
+
+body {
+	background: var(--ag-bg);
+	color: var(--ag-fg);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+	background: var(--ag-red);
+	color: var(--ag-fg-bright);
+}

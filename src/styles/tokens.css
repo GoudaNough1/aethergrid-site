@@ -1,0 +1,48 @@
+/* Aethergrid Design System - foundation tokens
+   Dark mode only. Grey-black-red. No blue. No hardcoded hex in consuming code.
+   Fonts loaded via next/font, not Google Fonts CDN. */
+
+:root {
+	/* ---------- Color scale (greys) ---------- */
+	--ag-black:            #000000;
+	--ag-bg:               #0d0d0d;
+	--ag-surface:          #1a1a1a;
+	--ag-surface-raised:   #1f1f1f;
+	--ag-track:            #222222;
+	--ag-border:           #2a2a2a;
+	--ag-border-strong:    #3a3a3a;
+	--ag-fg-muted:         #666666;
+	--ag-fg-dim:           #888888;
+	--ag-fg:               #f5f5f5;
+	--ag-fg-bright:        #ffffff;
+
+	/* ---------- Accent (red, the only color besides grey) ---------- */
+	--ag-red:              #dc2626;
+	--ag-red-hover:        #b91c1c;
+	--ag-red-bright:       #ef4444;
+	--ag-red-dim:          #7f1d1d;
+	--ag-red-wash:         rgba(220, 38, 38, 0.08);
+	--ag-red-ring:         rgba(220, 38, 38, 0.15);
+
+	/* ---------- Semantic aliases ---------- */
+	--fg:                  var(--ag-fg);
+	--fg-dim:              var(--ag-fg-dim);
+	--fg-muted:            var(--ag-fg-muted);
+	--bg:                  var(--ag-bg);
+	--surface:             var(--ag-surface);
+	--border:              var(--ag-border);
+	--accent:              var(--ag-red);
+	--accent-hover:        var(--ag-red-hover);
+	--ring:                var(--ag-red-ring);
+
+	/* ---------- Radii ---------- */
+	--radius-sm:   4px;
+	--radius-md:   8px;
+	--radius-lg:   12px;
+	--radius-xl:   16px;
+
+	/* ---------- Motion ---------- */
+	--dur-fast:   120ms;
+	--dur-base:   180ms;
+	--ease-out:   cubic-bezier(0.2, 0.8, 0.2, 1);
+}
