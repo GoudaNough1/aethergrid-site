@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 	title: "Aethergrid",
 	description:
 		"A software studio building tools across the stack. Training, consumer apps, websites, and desktop software.",
+	manifest: "/manifest.webmanifest",
 };
 
 export default function RootLayout({

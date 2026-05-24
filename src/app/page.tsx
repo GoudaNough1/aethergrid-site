@@ -63,7 +63,7 @@ export default function Home() {
 			{/* Nav */}
 			<nav className="flex items-center justify-between px-[36px] py-[22px] border-b-2 border-accent">
 				<div className="flex items-center gap-[10px]">
-					<RedSquare size={16} />
+					<img src="/aethergrid-mark.svg" alt="Aethergrid" width={22} height={22} style={{ display: "block" }} />
 					<span className="text-[14px] font-medium tracking-[-0.01em] text-fg-bright">
 						Aethergrid
 					</span>
@@ -123,40 +123,54 @@ export default function Home() {
 					</span>
 				</div>
 				<div>
-					{products.map((product, i) => (
-						<div
-							key={product.num}
-							className={`grid grid-cols-1 md:grid-cols-[36px_140px_1fr_110px] gap-x-[24px] gap-y-[8px] py-[24px] border-t border-rule items-baseline ${
-								i === products.length - 1 ? "border-b" : ""
-							}`}
-						>
-							<span className="font-mono text-[13px] font-medium text-accent">
-								{product.num}
-							</span>
-							<span className="text-[22px] font-medium tracking-[-0.02em] text-fg-bright">
-								{product.name}
-							</span>
-							<span className="text-[14px] text-fg-dim leading-[1.55]">
-								{product.desc}
-							</span>
-							<span className="md:text-right">
-								{product.live ? (
-									<a
-										href={product.href}
-										target="_blank"
-										rel="noopener"
-										className="text-accent text-[16px]"
-									>
-										&rarr;
-									</a>
-								) : (
-									<span className="font-mono text-[11px] text-fg-muted tracking-[0.06em]">
-										Coming soon
-									</span>
-								)}
-							</span>
-						</div>
-					))}
+					{products.map((product, i) => {
+						const rowClasses = `grid grid-cols-1 md:grid-cols-[36px_140px_1fr_110px] gap-x-[24px] gap-y-[8px] py-[24px] border-t border-rule items-baseline ${
+							i === products.length - 1 ? "border-b" : ""
+						}`;
+						const inner = (
+							<>
+								<span className="font-mono text-[13px] font-medium text-accent">
+									{product.num}
+								</span>
+								<span className="text-[22px] font-medium tracking-[-0.02em] text-fg-bright">
+									{product.name}
+								</span>
+								<span className="text-[14px] text-fg-dim leading-[1.55]">
+									{product.desc}
+								</span>
+								<span className="md:text-right">
+									{product.live ? (
+										<span className="text-accent text-[16px]">&rarr;</span>
+									) : (
+										<span className="font-mono text-[11px] text-fg-muted tracking-[0.06em]">
+											Coming soon
+										</span>
+									)}
+								</span>
+							</>
+						);
+
+						if (product.live) {
+							return (
+								<a
+									key={product.num}
+									href={product.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									className={`${rowClasses} no-underline cursor-pointer transition-[background] duration-[120ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:bg-[rgba(201,32,32,0.04)]`}
+									style={{ color: "inherit", textDecoration: "none" }}
+								>
+									{inner}
+								</a>
+							);
+						}
+
+						return (
+							<div key={product.num} className={rowClasses}>
+								{inner}
+							</div>
+						);
+					})}
 				</div>
 			</section>
 
@@ -165,26 +179,16 @@ export default function Home() {
 				<div className="mb-[36px]">
 					<Eyebrow>On the studio</Eyebrow>
 				</div>
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-[56px]">
-					<p className="text-[26px] font-medium leading-[1.3] tracking-[-0.015em] text-fg m-0">
-						Aethergrid is the operating company of Riley Chamlee. Founded in
-						2026 as a New Jersey limited liability company.
+				<div className="max-w-[640px]">
+					<p className="text-[15px] leading-[1.65] text-muted m-0 mb-[16px]">
+						The studio takes work one product line at a time. Foundations are
+						laid before features. Products ship when finished, not when
+						announced.
 					</p>
-					<div>
-						<p className="text-[15px] leading-[1.65] text-muted m-0 mb-[16px]">
-							The studio takes work one product line at a time. Foundations are
-							laid before features. Products ship when finished, not when
-							announced.
-						</p>
-						<p className="text-[15px] leading-[1.65] text-muted m-0 mb-[16px]">
-							All four product lines are built and operated under the same roof,
-							by the same hands, with the same regard for craft.
-						</p>
-						<p className="text-[15px] leading-[1.65] text-muted m-0">
-							We do not run beta lists. We do not promote roadmaps. We ship, and
-							then we talk.
-						</p>
-					</div>
+					<p className="text-[15px] leading-[1.65] text-muted m-0">
+						All four product lines are built and operated under the same roof,
+						by the same hands, with the same regard for craft.
+					</p>
 				</div>
 			</section>
 
@@ -193,7 +197,7 @@ export default function Home() {
 			{/* Numbers */}
 			<section className="px-[36px] py-[56px]">
 				<div className="mb-[36px]">
-					<Eyebrow>Since 2024</Eyebrow>
+					<Eyebrow>By the numbers</Eyebrow>
 				</div>
 				<div className="grid grid-cols-2 md:grid-cols-4 gap-[36px]">
 					{stats.map((stat) => (
@@ -258,7 +262,7 @@ export default function Home() {
 			<div className="h-[2px] bg-accent" />
 			<footer className="flex items-center justify-between px-[36px] py-[22px]">
 				<div className="flex items-center gap-[10px]">
-					<RedSquare size={10} />
+					<img src="/aethergrid-mark.svg" alt="" aria-hidden="true" width={14} height={14} style={{ display: "block" }} />
 					<span className="font-mono text-[11px] text-fg-muted tracking-[0.04em]">
 						&copy; Aethergrid LLC &middot; Established 2026 &middot; New Jersey
 					</span>
