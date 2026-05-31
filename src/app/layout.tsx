@@ -42,6 +42,14 @@ export const metadata: Metadata = {
 		description: "A studio. The mark is the system.",
 		url: "https://aethergrid.net",
 		siteName: "Aethergrid",
+		images: [
+			{
+				url: "/opengraph-image.png",
+				width: 1200,
+				height: 630,
+				alt: "Aethergrid - The mark is the system",
+			},
+		],
 		locale: "en_US",
 		type: "website",
 	},
@@ -51,6 +59,7 @@ export const metadata: Metadata = {
 		description: "A studio. The mark is the system.",
 		site: "@aethergridllc",
 		creator: "@aethergridllc",
+		images: ["/opengraph-image.png"],
 	},
 	robots: {
 		index: true,
