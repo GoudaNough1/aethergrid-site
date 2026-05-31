@@ -3,11 +3,9 @@
 
 /* Site-specific overrides - editorial direction palette */
 :root {
-	--ag-bg: #0a0a0a;
+	--ag-bg: #0a0808;
 	--ag-fg: #ededed;
-	--ag-red: #c92020;
-	--site-rule: #1c1c1c;
-	--site-muted: #999999;
+	--ag-red: #dc2626;
 }
 
 @theme inline {
@@ -22,8 +20,6 @@
 	--color-fg-bright: var(--ag-fg-bright);
 	--color-accent: var(--ag-red);
 	--color-accent-hover: var(--ag-red-hover);
-	--color-rule: var(--site-rule);
-	--color-muted: var(--site-muted);
 	--font-sans: var(--font-dm-sans);
 	--font-mono: var(--font-dm-mono);
 }
@@ -38,4 +34,36 @@ body {
 ::selection {
 	background: var(--ag-red);
 	color: var(--ag-fg-bright);
+}
+
+@keyframes breath {
+	0%, 100% {
+		transform: scale(1);
+		filter:
+			drop-shadow(0 0 20px rgba(220, 38, 38, 0.55))
+			drop-shadow(0 0 60px rgba(220, 38, 38, 0.35))
+			drop-shadow(0 0 120px rgba(220, 38, 38, 0.2));
+	}
+	50% {
+		transform: scale(1.04);
+		filter:
+			drop-shadow(0 0 28px rgba(220, 38, 38, 0.75))
+			drop-shadow(0 0 64px rgba(220, 38, 38, 0.4))
+			drop-shadow(0 0 120px rgba(220, 38, 38, 0.24));
+	}
+}
+
+@keyframes drift {
+	0%, 100% { transform: translateY(0); opacity: 0.4; }
+	50% { transform: translateY(4px); opacity: 1; }
+}
+
+@keyframes nodePulse {
+	0%, 100% { transform: scale(1.3); }
+	50% { transform: scale(1.55); }
+}
+
+@keyframes conduitPulse {
+	from { stroke-dashoffset: 0; }
+	to { stroke-dashoffset: -530; }
 }

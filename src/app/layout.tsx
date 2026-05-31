@@ -1,5 +1,8 @@
-import type { Metadata } from "next";
-import { DM_Sans, DM_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { DM_Sans, DM_Mono, Fraunces } from "next/font/google";
+import Background from "@/components/Background";
+import CursorFollower from "@/components/CursorFollower";
+import { Nav } from "@/components/Nav";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -14,11 +17,55 @@ const dmMono = DM_Mono({
 	weight: ["400", "500"],
 });
 
+const fraunces = Fraunces({
+	variable: "--font-serif",
+	subsets: ["latin"],
+	weight: ["400", "500"],
+	style: ["normal", "italic"],
+	display: "swap",
+});
+
 export const metadata: Metadata = {
-	title: "Aethergrid",
+	metadataBase: new URL("https://aethergrid.net"),
+	title: {
+		default: "Aethergrid",
+		template: "%s - Aethergrid",
+	},
 	description:
-		"A software studio building tools across the stack. Training, consumer apps, websites, and desktop software.",
+		"Aethergrid is a studio. Four products under one mark - the training platform, the apps, the client work, the desktop tools.",
+	applicationName: "Aethergrid",
+	authors: [{ name: "Aethergrid LLC" }],
+	keywords: ["aethergrid", "studio", "msp training", "software studio", "msp academy", "design studio"],
 	manifest: "/manifest.webmanifest",
+	openGraph: {
+		title: "Aethergrid",
+		description: "A studio. The mark is the system.",
+		url: "https://aethergrid.net",
+		siteName: "Aethergrid",
+		locale: "en_US",
+		type: "website",
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Aethergrid",
+		description: "A studio. The mark is the system.",
+		site: "@aethergridllc",
+		creator: "@aethergridllc",
+	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: { index: true, follow: true, "max-image-preview": "large" },
+	},
+	icons: {
+		icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+	},
+};
+
+export const viewport: Viewport = {
+	themeColor: "#0a0808",
+	width: "device-width",
+	initialScale: 1,
 };
 
 export default function RootLayout({
@@ -29,9 +76,16 @@ export default function RootLayout({
 	return (
 		<html
 			lang="en"
-			className={`${dmSans.variable} ${dmMono.variable} antialiased`}
+			className={`${dmSans.variable} ${dmMono.variable} ${fraunces.variable} antialiased`}
 		>
-			<body className="font-sans">{children}</body>
+			<body className="font-sans">
+				<Background />
+				<CursorFollower />
+				<div style={{ position: "relative", zIndex: 1 }}>
+					<Nav />
+					{children}
+				</div>
+			</body>
 		</html>
 	);
 }

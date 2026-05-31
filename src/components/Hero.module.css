@@ -1,0 +1,319 @@
+.hero {
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	overflow: hidden;
+	padding-top: 70px;
+	background: transparent;
+}
+
+.canvas {
+	position: relative;
+	width: 100%;
+	max-width: 900px;
+	height: 720px;
+	margin: 0 auto;
+}
+
+.conduits {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 1;
+}
+
+.conduitLine {
+	stroke: rgba(220, 38, 38, 0.28);
+	stroke-width: 1;
+	fill: none;
+	transition: stroke 280ms ease, stroke-width 280ms ease;
+}
+
+.conduitLineActive {
+	stroke: rgba(220, 38, 38, 0.85);
+	stroke-width: 1.6;
+}
+
+.conduitLineDimmed {
+	stroke: rgba(220, 38, 38, 0.15);
+}
+
+.conduitDot {
+	fill: rgba(220, 38, 38, 0.55);
+	transform-box: fill-box;
+	transform-origin: center;
+	transition: fill 280ms ease, opacity 280ms ease, transform 280ms ease;
+}
+
+.conduitDotActive {
+	fill: rgba(220, 38, 38, 1);
+	opacity: 1;
+	transform: scale(1.4);
+	animation: nodePulse 1.6s ease-in-out infinite;
+}
+
+.conduitDotDimmed {
+	opacity: 0.4;
+}
+
+.conduitPulse {
+	stroke: #dc2626;
+	stroke-width: 1.5;
+	stroke-opacity: 0.7;
+	stroke-dasharray: 30 500;
+	stroke-linecap: round;
+	fill: none;
+	pointer-events: none;
+	animation: conduitPulse 5.5s linear infinite;
+}
+
+.markWrap {
+	position: absolute;
+	left: 50%;
+	top: 360px;
+	transform: translate(-50%, -50%);
+	width: 440px;
+	height: 440px;
+	z-index: 2;
+	isolation: isolate;
+}
+
+.markWrap::before {
+	content: "";
+	position: absolute;
+	inset: -150px;
+	background: radial-gradient(
+		circle,
+		rgba(220, 38, 38, 0.12) 0%,
+		rgba(220, 38, 38, 0.04) 35%,
+		transparent 70%
+	);
+	filter: blur(40px);
+	z-index: -1;
+	pointer-events: none;
+}
+
+.mark {
+	width: 100%;
+	height: 100%;
+	display: block;
+	filter:
+		drop-shadow(0 0 20px rgba(220, 38, 38, 0.55))
+		drop-shadow(0 0 60px rgba(220, 38, 38, 0.35))
+		drop-shadow(0 0 120px rgba(220, 38, 38, 0.2));
+	animation: breath 6.5s ease-in-out infinite;
+}
+
+.pillars {
+	display: contents;
+}
+
+.pillar {
+	position: absolute;
+	z-index: 2;
+	color: inherit;
+	text-decoration: none;
+}
+
+.pAcad { left: 32px; top: 200px; text-align: left; }
+.pPlay { right: 32px; top: 200px; text-align: right; }
+.pDesign { left: 32px; top: 460px; text-align: left; }
+.pSoft { right: 32px; top: 460px; text-align: right; }
+
+.pillarName {
+	font-family: var(--font-serif);
+	font-size: 27px;
+	font-weight: 500;
+	color: #f0ebe6;
+	letter-spacing: -0.015em;
+	line-height: 1;
+	transition: color 220ms ease;
+}
+
+.pAcad:hover .pillarName {
+	color: #ffffff;
+}
+
+.pillarDesc {
+	font-size: 12px;
+	color: #75706a;
+	line-height: 1.45;
+	max-width: 145px;
+	margin-top: 3px;
+}
+
+.pillarStat {
+	font-family: var(--font-mono);
+	font-size: 11px;
+	color: #585450;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	margin-top: 6px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.pPlay .pillarStat,
+.pSoft .pillarStat {
+	flex-direction: row-reverse;
+}
+
+.statDot {
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background: #585450;
+}
+
+.pAcad .statDot {
+	background: #dc2626;
+	box-shadow: 0 0 6px rgba(220, 38, 38, 0.6);
+}
+
+.pAcad .pillarStat {
+	color: #c43838;
+}
+
+.editorial {
+	position: absolute;
+	bottom: 78px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-family: var(--font-serif);
+	font-size: 25px;
+	font-weight: 400;
+	color: #d8d3ce;
+	max-width: 480px;
+	text-align: center;
+	line-height: 1.4;
+	letter-spacing: -0.01em;
+	z-index: 2;
+}
+
+.editorial em {
+	font-style: italic;
+	color: #f0ebe6;
+}
+
+.scrollHint {
+	position: absolute;
+	bottom: 32px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: fit-content;
+	font-family: var(--font-mono);
+	font-size: 11px;
+	color: #5a5550;
+	display: flex;
+	align-items: center;
+	z-index: 2;
+}
+
+.arrow {
+	font-size: 17px;
+	animation: drift 2.6s ease-in-out infinite;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+	.markWrap {
+		width: 280px;
+		height: 280px;
+	}
+}
+
+@media (max-width: 767px) {
+	.hero {
+		padding: 32px 20px;
+		align-items: flex-start;
+		overflow: visible;
+	}
+
+	.canvas {
+		height: auto;
+		max-width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.conduits {
+		display: none;
+	}
+
+	.markWrap {
+		position: static;
+		transform: none;
+		width: 200px;
+		height: auto;
+		margin: 0 auto;
+	}
+
+	.markWrap::before {
+		display: none;
+	}
+
+	.mark {
+		height: auto;
+	}
+
+	.pillars {
+		display: flex;
+		flex-direction: column;
+		gap: 32px;
+		width: 100%;
+		margin-top: 40px;
+	}
+
+	.pillar {
+		position: static;
+		width: 100%;
+		text-align: left;
+	}
+
+	.pPlay .pillarStat,
+	.pSoft .pillarStat {
+		flex-direction: row;
+	}
+
+	.pillarName {
+		font-size: 20px;
+	}
+
+	.editorial {
+		position: static;
+		transform: none;
+		max-width: 100%;
+		font-size: 20px;
+		margin-top: 40px;
+	}
+
+	.scrollHint {
+		position: static;
+		transform: none;
+		margin: 32px auto 0;
+		justify-content: center;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.mark {
+		animation: none;
+	}
+
+	.arrow {
+		animation: none;
+	}
+
+	.conduitDotActive {
+		animation: none;
+	}
+
+	.conduitPulse {
+		animation: none;
+		opacity: 0;
+	}
+}

@@ -1,0 +1,10 @@
+{
+	"routes": [
+		{
+			"route": "/opengraph-image",
+			"headers": {
+				"content-type": "image/png"
+			}
+		}
+	]
+}
